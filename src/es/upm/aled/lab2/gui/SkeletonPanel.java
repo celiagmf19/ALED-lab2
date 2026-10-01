@@ -56,12 +56,20 @@ public class SkeletonPanel extends JPanel {
 	}
 
 	private void drawSkeleton(Graphics g, double parentX, double parentY, Node node) {
-		// TODO: Ponga comentarios en este método
+		
+		// Crea un óvalo relleno alrededor del nodo indicado en el método
 		g.fillOval((int) node.getX() - 4, (int) node.getY() - 4, 8, 8);
+		
+		// Crea una línea desde el nodo hijo (dado) hasta su nodo padre
 		g.drawLine((int) parentX, (int) parentY, (int) node.getX(), (int) node.getY());
+		
+		// Si el nodo hijo no existe, se devuelve
 		if (node.getChildren().size() == 0) {
 			return;
 		}
+		
+		// Tomamos todos los nodos hijos del nodo dado y hacemos lo mismo
+		// que antes tantas veces como hijos tenga
 		for (Node child : node.getChildren()) {
 			drawSkeleton(g, node.getX(), node.getY(), child);
 		}
